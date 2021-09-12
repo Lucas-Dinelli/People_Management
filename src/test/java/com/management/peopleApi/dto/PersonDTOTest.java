@@ -16,19 +16,21 @@ import static com.management.peopleApi.utils.PersonUtils.createFakeDTO;
 
 public class PersonDTOTest {
 	
-	private final String FIRST_NAME_IS_BLANK = "The firstName field must be filled";
+	private static final String FIRST_NAME_IS_BLANK = "The firstName field must be filled";
 	
-	private String FIRST_NAME_INCORRECT_SIZE = "The firstName field must be between 2 and 100 characters";
+	private static final String FIRST_NAME_INCORRECT_SIZE = "The firstName field must be between 2 and 100 characters";
 	
-	private final String LAST_NAME_IS_BLANK = "The lastName field must be filled";
+	private static final String LAST_NAME_IS_BLANK = "The lastName field must be filled";
 	
-	private String LAST_NAME_INCORRECT_SIZE = "The lastName field must be between 2 and 100 characters";
+	private static final String LAST_NAME_INCORRECT_SIZE = "The lastName field must be between 2 and 100 characters";
 	
-	private final String INVALID_CPF = "Invalid CPF";
+	private static final String CPF_IS_NULL = "The cpf field must be filled and only with numbers";
 	
-	private final String CPF_INCORRECT_SIZE = "Just numbers";
+	private static final String INVALID_CPF = "Invalid CPF";
 	
-	private final String BIRTH_DATE_IS_NULL = "The birthDate field must be entered in the following format: dd-MM-yyyy";
+	private static final String CPF_INCORRECT_SIZE = "Just 11 numbers";
+	
+	private static final String BIRTH_DATE_IS_NULL = "The birthDate field must be entered in the following format: dd-MM-yyyy";
 	
 	private Validator validator;
 	
@@ -85,6 +87,16 @@ public class PersonDTOTest {
 		Set<ConstraintViolation<PersonDTO>> violations = validator.validate(personDTO);
 				
 		assertTrue(violations.stream().anyMatch(violation -> violation.getMessage().equals(LAST_NAME_INCORRECT_SIZE)));
+    }
+	
+	@Test
+    void test_ExistsViolation_WhenCpfIsNull() {
+		PersonDTO personDTO =  createFakeDTO();
+		personDTO.setCpf(null);
+
+		Set<ConstraintViolation<PersonDTO>> violations = validator.validate(personDTO);
+				
+		assertTrue(violations.stream().anyMatch(violation -> violation.getMessage().equals(CPF_IS_NULL)));
     }
 	
 	@Test

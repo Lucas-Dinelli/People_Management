@@ -32,9 +32,10 @@ public class PersonDTO {
     @NotBlank(message = "The lastName field must be filled")
     @Size(min = 2, max = 100, message = "The lastName field must be between 2 and 100 characters")
     private String lastName;
-
+    
+    @NotNull(message = "The cpf field must be filled and only with numbers")
     @CPF(message = "Invalid CPF")
-    @Size(min = 11, max = 11, message = "Just numbers")
+    @Size(min = 11, max = 11, message = "Just 11 numbers")
     private String cpf;
 
     @NotNull(message = "The birthDate field must be entered in the following format: dd-MM-yyyy")

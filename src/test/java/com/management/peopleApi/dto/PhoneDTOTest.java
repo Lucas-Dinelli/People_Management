@@ -15,11 +15,11 @@ import org.junit.jupiter.api.Test;
 
 public class PhoneDTOTest {
 	
-	private final String TYPE_IS_NULL = "The type field must be entered with the following values: [HOME, MOBILE or COMMERCIAL]";
+	private static final String TYPE_IS_NULL = "The type field must be entered with the following values: [HOME, MOBILE or COMMERCIAL]";
 	
-	private final String NUMBER_IS_BLANK = "The number field must be filled";
+	private static final String NUMBER_IS_BLANK = "The number field must be filled";
 	
-	private final String NUMBER_INCORRECT_SIZE = "The number must be between 8 and 15 characters.";
+	private static final String NUMBER_INCORRECT_SIZE = "The number must be between 8 and 15 characters.";
 	
 	private Validator validator;
 	
